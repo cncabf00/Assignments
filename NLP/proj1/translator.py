@@ -19,7 +19,6 @@ if isWindows:
     CYAN_DARK = 0x3
     GREEN_DARK = 0x2
     GREY = 0x8
-    
 
     color_prompt = CYAN
     color_sys = CYAN_DARK
