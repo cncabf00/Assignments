@@ -1,0 +1,605 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Explorations Latest Issue | Sig KDD</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="/sites/all/themes/magazeen/favicon.ico" type="image/x-icon" />
+
+  <link type="text/css" rel="stylesheet" media="all" href="/sites/default/files/css/css_8740df2b61655e14dacd09e970bf1d41.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/fusion/fusion_core/css/grid16-960.css?b"/>
+  <!--[if IE 8]>
+  <link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/fusion/fusion_core/css/ie8-fixes.css?b" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/magazeen/css/ie8-fixes.css?b" />
+  <![endif]-->
+  <!--[if IE 7]>
+  <link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/fusion/fusion_core/css/ie7-fixes.css?b" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/magazeen/css/ie7-fixes.css?b" />
+  <![endif]-->
+  <!--[if lte IE 6]>
+  <link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/fusion/fusion_core/css/ie6-fixes.css?b"/>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/magazeen/css/ie6-fixes.css?b"/>
+  <![endif]-->
+  <link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/magazeen/css/local.css?b" />
+  <script type="text/javascript" src="/sites/default/files/js/js_999dd6e1af46ddf5504f369c5b3a1d11.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "basePath": "/", "googleanalytics": { "trackOutgoing": 1, "trackMailto": 1, "trackDownload": 1, "trackDownloadExtensions": "7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip" }, "nice_menus_options": { "delay": 800, "speed": 1 }, "cron": { "basePath": "/poormanscron", "runNext": 1347796123 }, "views": { "ajax_path": "/views/ajax", "ajaxViews": [ { "view_name": "sponsers", "view_display_id": "block_2", "view_args": "", "view_path": "explorations/issues/8-1-2006-06/7-Ha.pdf", "view_base_path": "sponsors", "view_dom_id": 2, "pager_element": 4 } ] } });
+//--><!]]>
+</script>
+</head>
+
+<body id="pid-explorations-issues-8-1-2006-06-7-hapdf" class="not-front not-logged-in page-explorations no-sidebars layout-first-main sidebars-both-last font-size-12 grid-type-960 grid-width-16">
+  <div id="page" class="page">
+    <div id="page-inner" class="page-inner">
+      <div id="skip">
+        <a href="#main-content-area">Skip to Main Content Area</a>
+      </div>
+
+      <!-- header-top row: width = grid_width -->
+      
+      <!-- header-group row: width = grid_width -->
+      <div id="header-group-wrapper" class="header-group-wrapper full-width">
+        <div id="header-group" class="header-group row grid16-16">
+          <div id="header-group-inner" class="header-group-inner inner clearfix">
+
+                        <div id="header-site-info" class="header-site-info block">
+              <div id="header-site-info-inner" class="header-site-info-inner inner">
+                             <div id="logo">
+                  <a href="/" title="Home"><img src="/sites/default/files/magazeen_logo.png" alt="Home" /></a>
+                </div>
+                                
+                                                            </div><!-- /header-site-info-inner -->
+            </div><!-- /header-site-info -->
+            
+           
+            <div id="search-box" class="search-box block">
+<div id="search-box-inner" class="search-box-inner inner clearfix">
+<form action="/explorations/issues/8-1-2006-06/7-Ha.pdf"  accept-charset="UTF-8" method="post" id="search-theme-form">
+<div><div id="search" class="container-inline">
+  <input class="search-input form-text" type="text" maxlength="128" name="search_theme_form" id="edit-search-theme-form-header"  size="15" value="" title="Enter search terms" />
+  <input id="search_header" class="search_submit" type="submit" name="op" value="Search"  />
+  <input type="hidden" name="form_build_id" id="form-f226725ab7f969fd64ebcbb2b300716c" value="form-f226725ab7f969fd64ebcbb2b300716c"  />
+<input type="hidden" name="form_id" id="edit-search-theme-form" value="search_theme_form"  />
+</div><!-- /search -->
+</div></form>
+</div><!-- /search-box-inner -->
+</div><!-- /search-box -->
+              
+<div id="block-wds_follow-0" class="block block-wds_follow odd first last  grid16-16">
+  <div class="inner clearfix">
+            <div class="content clearfix">
+      <div class="wds-follow">
+
+  
+                    <span class="service-to-follow"><a href="http://twitter.com/#!/kdd_news" target="_blank"><img src="/sites/all/modules/wds_follow/images/twitter_50x50.png" /></a></span>
+                  <span class="service-to-follow"><a href="http://www.facebook.com/SIGKDD" target="_blank"><img src="/sites/all/modules/wds_follow/images/facebook_50x50.png" /></a></span>
+                  <span class="service-to-follow"><a href="http://www.linkedin.com/groups?gid=160888&amp;home=" target="_blank"><img src="/sites/all/modules/wds_follow/images/linkedin_50x50.png" /></a></span>
+                  <span class="service-to-follow"><a href="http://www.kdd.org/rss.xml" target="_blank"><img src="/sites/all/modules/wds_follow/images/rss_50x50.png" /></a></span>
+      </div>
+    </div>
+  </div><!-- /block-inner -->
+</div><!-- /block -->
+          </div><!-- /header-group-inner -->
+        </div><!-- /header-group -->
+      </div><!-- /header-group-wrapper -->
+
+      <div id="primary-menu-wrapper" class="primary-menu-wrapper full-width">
+<div id="primary-menu" class="primary-menu row grid16-16">
+<div id="primary-menu-inner" class="primary-menu-inner inner clearfix">
+<ul class="menu sf-menu"><li class="leaf first"><a href="/" title="Home">Home</a></li>
+<li class="expanded"><a href="/blog" title="Blog">Blog</a><ul class="menu"><li class="leaf first last"><a href="/industry-blogs" title="Data Science Blogs">Industry Blogs</a></li>
+</ul></li>
+<li class="expanded"><a href="/news" title="">News</a><ul class="menu"><li class="leaf first last"><a href="/news/kdd-in-the-news" title="">KDD In the News</a></li>
+</ul></li>
+<li class="leaf"><a href="/join.php" title="Membership">Membership</a></li>
+<li class="expanded"><a href="/conferences" title="Conferences">Conferences</a><ul class="menu"><li class="leaf first last"><a href="/conferences" title="Proceedings and details of past KDD conferences">KDD Archives</a></li>
+</ul></li>
+<li class="leaf"><a href="/conferences/kdd-2012-august-12-16-2012-beijing-china" title="KDD 2012">KDD 2012</a></li>
+<li class="expanded active-trail"><a href="/explorations" title="">Explorations</a><ul class="menu"><li class="leaf first last"><a href="/explorations-archives">Explorations Archive</a></li>
+</ul></li>
+<li class="expanded"><a href="/innovation-service-awards" title="">Awards</a><ul class="menu"><li class="leaf first"><a href="/kddcup/index.php">KDD Cup</a></li>
+<li class="leaf"><a href="/sigkdd-service-award" title="SIGKDD Service Award">SIGKDD Service Award</a></li>
+<li class="leaf"><a href="/sigkdd-innovation-award" title="SIGKDD Innovation Award">SIGKDD Innovation Award</a></li>
+<li class="leaf"><a href="/best-paper-awards">Best Paper Awards</a></li>
+<li class="leaf last"><a href="/doctoral-dissertation-award" title="Doctoral Dissertation Award">Doctoral Dissertation Award</a></li>
+</ul></li>
+<li class="expanded last"><a href="/about-kdd-0" title="About KDD">About KDD</a><ul class="menu"><li class="leaf first"><a href="/executive-committee">Executive Committee</a></li>
+<li class="leaf"><a href="/sigkdd-curriculum-committee" title="SIGKDD Curriculum Committee">SIGKDD Curriculum</a></li>
+<li class="leaf"><a href="/about-acm" title="About the ACM">About the ACM</a></li>
+<li class="leaf last"><a href="/contact-us" title="Contact Us">Contact Us</a></li>
+</ul></li>
+</ul></div><!-- /primary-menu-inner -->
+</div><!-- /primary-menu -->
+</div><!-- /primary-menu-wrapper -->
+
+      <!-- preface-top row: width = grid_width -->
+      
+      <!-- main row: width = grid_width -->
+      <div id="main-wrapper" class="main-wrapper full-width">
+        <div id="main" class="main row grid16-16">
+          <div id="main-inner" class="main-inner inner clearfix">
+            <div id="sidebar-first" class="sidebar-first row nested grid16-5">
+<div id="sidebar-first-inner" class="sidebar-first-inner inner clearfix">
+  
+<div id="block-wds_twitter-0" class="block block-wds_twitter odd first magazeen-rounded-block magazeen-image-border grid16-5">
+  <div class="inner clearfix">
+            <h2 class="title block-title">Twitter Feed</h2>
+        <div class="content clearfix">
+      <div class="tweets-pulled-listing">
+
+  
+          
+    <ul class="tweets-pulled-listing">
+          <li>
+        <div class="tweet-authorphoto"><img src="http://a0.twimg.com/profile_images/1498731625/Klaasjan-20110610-05_normal.jpg" alt="kdoeswijk" /></div>
+        <span class="tweet-author"><a href="http://twitter.com/kdoeswijk">kdoeswijk</a></span>
+        <span class="tweet-text">Business Analytics Turns Data into Intelligence thanks to available and powerful analytics tools <a href="http://t.co/b8LV58ku" rel="nofollow" title="http://t.co/b8LV58ku">t.co/b8LV58ku</a> #<a href="http://twitter.com/#!/search?q=%23bigdata" title="#bigdata" rel="nofollow">bigdata</a> #<a href="http://twitter.com/#!/search?q=%23kpilibrary" title="#kpilibrary" rel="nofollow">kpilibrary</a></span>
+        <div class="tweet-time"><a href="http://twitter.com/kdoeswijk/status/247256006596390912">1 min 10 sec ago.</a></div>
+
+                  <div class="tweet-divider"></div>
+                
+      </li>
+          <li>
+        <div class="tweet-authorphoto"><img src="http://a0.twimg.com/profile_images/2539096116/dnVPDhMP_normal" alt="prdyt" /></div>
+        <span class="tweet-author"><a href="http://twitter.com/prdyt">prdyt</a></span>
+        <span class="tweet-text">RT @<a href="http://twitter.com/AntarYaami" rel="nofollow" title="@AntarYaami">AntarYaami</a>: RT @<a href="http://twitter.com/BigDataBorat" rel="nofollow" title="@BigDataBorat">BigDataBorat</a>: 90% of data is unstructure. Furthering analysis reveal that 60% of unstructure data is cat video. #<a href="http://twitter.com/#!/search?q=%23bigdata" title="#bigdata" rel="nofollow">bigdata</a></span>
+        <div class="tweet-time"><a href="http://twitter.com/prdyt/status/247255669596635137">2 min 30 sec ago.</a></div>
+
+                  <div class="tweet-divider"></div>
+                
+      </li>
+          <li>
+        <div class="tweet-authorphoto"><img src="http://a0.twimg.com/profile_images/2479954378/ap49wlan30erzv5gkzaz_normal.jpeg" alt="iHijazi" /></div>
+        <span class="tweet-author"><a href="http://twitter.com/iHijazi">iHijazi</a></span>
+        <span class="tweet-text">#<a href="http://twitter.com/#!/search?q=%23BigData" title="#BigData" rel="nofollow">BigData</a> is headed the same path BI &amp; analytics did a decade ago, to become the crown jewel of enterprise data managem…<a href="http://t.co/A4fwsMxH" rel="nofollow" title="http://t.co/A4fwsMxH">t.co/A4fwsMxH</a></span>
+        <div class="tweet-time"><a href="http://twitter.com/iHijazi/status/247255276691013632">4 min 4 sec ago.</a></div>
+
+                
+      </li>
+        </ul>
+  </div>
+    </div>
+  </div><!-- /block-inner -->
+</div><!-- /block -->
+  
+<div id="block-views-sponsers-block_2" class="block block-views even  last magazeen-rounded-block grid16-5">
+  <div class="inner clearfix">
+            <h2 class="title block-title">Sponsors</h2>
+        <div class="content clearfix">
+      <div class="view view-sponsers view-id-sponsers view-display-id-block_2 view-dom-id-2">
+    
+  
+  
+      <div class="view-empty">
+      <p>For sponsorship opportunities email ankurt (at) u.washington.edu.</p>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>     </div>
+  </div><!-- /block-inner -->
+</div><!-- /block -->
+</div><!-- /sidebar-first-inner -->
+</div><!-- /sidebar-first -->
+
+            <!-- main group: width = grid_width - sidebar_first_width -->
+            <div id="main-group" class="main-group row nested grid16-11">
+              <div id="main-group-inner" class="main-group-inner inner">
+                
+                <div id="main-content" class="main-content row nested">
+                  <div id="main-content-inner" class="main-content-inner inner">
+                    <!-- content group: width = grid_width - (sidebar_first_width + sidebar_last_width) -->
+                    <div id="content-group" class="content-group row nested grid16-11">
+                      <div id="content-group-inner" class="content-group-inner inner">
+                        <div id="breadcrumbs" class="breadcrumbs block">
+<div id="breadcrumbs-inner" class="breadcrumbs-inner inner clearfix">
+<div class="breadcrumb"><a href="/">Home</a> » Explorations</div></div><!-- /breadcrumbs-inner -->
+</div><!-- /breadcrumbs -->
+
+                                                <div id="content-top" class="content-top row nested">
+                          <div id="content-top-inner" class="content-top-inner inner">
+                                                        <div id="content-messages" class="content-messages block">
+<div id="content-messages-inner" class="content-messages-inner inner clearfix">
+<div class="messages error">
+The selected file <em>/srv/www/kdd-org/kdd/sites/default/files/fileNZTIW2</em> could not be copied.</div>
+</div><!-- /content-messages-inner -->
+</div><!-- /content-messages -->
+                                                      </div><!-- /content-top-inner -->
+                        </div><!-- /content-top -->
+                        
+                        <div id="content-region" class="content-region row nested">
+                          <div id="content-region-inner" class="content-region-inner inner">
+                            <a name="main-content-area" id="main-content-area"></a>
+                                                        <div id="content-inner" class="content-inner block">
+                              <div id="content-inner-inner" class="content-inner-inner inner">
+                                                                <h1 class="title">Explorations Latest Issue</h1>
+                                                                                                <div id="content-content" class="content-content">
+                                  <div class="view-title-wrapper clearfix"> </div>
+<div class="view view-newsletter view-id-newsletter view-display-id-page_2 view-dom-id-1 ">
+
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+    
+<div id="node-472" class="node odd full-node node-type-simplenews">
+
+  <div class="node-title-wrapper clearfix">
+        <h2 class="title"><a href="/newsletter/explorations-december-2011-13-2" title="December 2011, Volume 13, Issue 2">December 2011, Volume 13, Issue 2</a></h2>
+    
+      </div>
+
+  <div class="inner">
+    <div class="node-inner-padding">
+    
+      <div class="content clearfix">
+                <div class="center">
+<table border="1" cellpadding="10" cellspacing="1" class="contributors">
+<tbody>
+<tr valign="top">
+<th>
+					Editor-In-Chief</th>
+<th>
+					Associate Editor</th>
+</tr>
+<tr valign="top">
+<td>
+					<a href="http://www.adrem.ua.ac.be/~goethals/">Bart Goethals</a> <span class="affiliation"><a href="http://www.ua.ac.be/">University of Antwerp</a></span> <span class="email">bart.goethals at ua.ac.be</span></td>
+<td>
+					<a href="http://charuaggarwal.net/">Charu Aggarwal</a> <span class="affiliation">IBM T.J. Watson Research Center</span> <span class="email">charu at us.ibm.com</span></td>
+</tr>
+<tr valign="top">
+<td>
+					&nbsp;</td>
+<td>
+					<a href="http://www.cse.ohio-state.edu/~srini/">Srinivasan Parthasarathy</a> <span class="affiliation">The Ohio State University</span> <span class="email">srini at cse.ohio-state.edu</span></td>
+</tr>
+<tr valign="top">
+<td>
+					&nbsp;</td>
+<td>
+<p><a href="http://faculty.washington.edu/ankurt/About_Me.html">Ankur M. Teredesai</a> University of Washington<br />
+						ankurt at u.washington.edu</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>
+	&nbsp;</h3>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-01-editorial.pdf">Editorial</a></div>
+<div class="pagenum">
+		1</div>
+<div class="authors">
+		Bart Goethals</div>
+</div>
+<div>
+	&nbsp;</div>
+<h3>
+	<strong>Educational Data Mining</strong></h3>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-02-Calders%28introduction%29.pdf">Introduction to The Special Section on Educational Data Mining</a></div>
+<div class="pagenum">
+		3</div>
+<div class="authors">
+		Toon Calders, Mykola Pechenizkiy</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-03-Agrawal.pdf">Data Mining for Improving Textbooks</a></div>
+<div class="pagenum">
+		7</div>
+<div class="authors">
+		Rakesh Agrawal, Sreenivas Gollapudi, Anitha Kannan, Krishnaram Kenthapadi</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-04-Rabbany.pdf">Social Network Analysis and Mining to Support the Assessment of On-line Student Participation</a></div>
+<div class="pagenum">
+		20</div>
+<div class="authors">
+		Reihaneh Rabbany k., Mansoureh Takaffoli, Osmar R. Za&iuml;ane</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-05-Desmarais.pdf">Mapping Question Items to Skills with Non-negative Matrix Factorization</a></div>
+<div class="pagenum">
+		30</div>
+<div class="authors">
+		Michel C. Desmarais</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-06-Pardos.pdf">The Sum is Greater than the Parts: Ensembling Models of Student Knowledge in Educational Software</a></div>
+<div class="pagenum">
+		37</div>
+<div class="authors">
+		Zachary A. Pardos, Ryan S.J.d. Baker, Sujith M. Gowda, Neil T. Heffernan</div>
+</div>
+<div>
+	&nbsp;</div>
+<h3>
+	<strong>Contributed Articles</strong></h3>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-07-vanderAalst.pdf">Process Mining: Making Knowledge Discovery Process Centric</a></div>
+<div class="pagenum">
+		<strong>45</strong></div>
+<div class="authors">
+		<em>Wil van der Aalst</em></div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-08-Spirin.pdf">Survey on Web Spam Detection: Principles and Algorithms</a></div>
+<div class="pagenum">
+		<strong>50</strong></div>
+<div class="authors">
+		<em>Nikita Spirin, Jiawei Han</em></div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-09-Munson.pdf">A Study on the Importance of and Time Spent on Different Modeling Steps</a></div>
+<div class="pagenum">
+		<strong>65</strong></div>
+<div class="authors">
+		<em>M. Arthur Munson</em></div>
+</div>
+<div>
+	&nbsp;</div>
+<h3>
+	<strong>KDD 2012</strong></h3>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-10-Yang.pdf">A Conversation with the Chinese KDD Leaders</a></div>
+<div class="pagenum">
+		<strong>72</strong></div>
+<div class="authors">
+		<em>Qiang Yang</em></div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-11-Chang.pdf">A Conversation with Dr. Edward Y. Chang</a></div>
+<div class="pagenum">
+		<strong>73</strong></div>
+<div class="authors">
+		<em>Edward Y. Chang</em></div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-12-Deyi-Li.pdf">A Conversation with Professors Deyi Li and Jie Tang</a></div>
+<div class="pagenum">
+		<strong>75</strong></div>
+<div class="authors">
+		<em>Deyi Li, Jie Tang</em></div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-13-Jianzhong-Li.pdf">A Conversation with Professor Jianzhong Li</a></div>
+<div class="pagenum">
+		<strong>77</strong></div>
+<div class="authors">
+		<em>Jianzhong Li</em></div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-14-Lu.pdf">A Conversation with Professor Ruqian Lu et al.&nbsp;</a></div>
+<div class="pagenum">
+		<strong>79</strong></div>
+<div class="authors">
+		Shuigeng Zhou, Fei Wang, Shanfeng Zhu, Caiyan Jia, Qiwen Dong, Ruqian Lu</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-15-Ma.pdf">A Conversation with MSRA Researchers</a></div>
+<div class="pagenum">
+		<strong>82</strong></div>
+<div class="authors">
+		Wei-Ying Ma, Zheng Chen, Hang Li, Tie-Yan Liu, Zaiqing Nie, Haixun Wang, Ji-Rong Wen, Xing Xie,&nbsp;Yu Zheng</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-16-Bole-Shi.pdf">A Conversation with Professor Bole Shi&nbsp;</a></div>
+<div class="pagenum">
+		<strong>85</strong></div>
+<div class="authors">
+		Bole Shi</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-17-Yong-Shi.pdf">A Conversation with Dr. Yong Shi</a></div>
+<div class="pagenum">
+		<strong>87</strong></div>
+<div class="authors">
+		Yong Shi</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-18-Zhongzhi-Shi.pdf">A Conversation with Professor Zhongzhi Shi</a></div>
+<div class="pagenum">
+		<strong>89</strong></div>
+<div class="authors">
+		Zhongzhi Shi</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-19-Wang.pdf">A Conversation with Dr. Haifeng Wang</a></div>
+<div class="pagenum">
+		<strong>91</strong></div>
+<div class="authors">
+		Haifeng Wang</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-20-Shan-Wang.pdf">A Conversation with Professor Shan Wang et al.</a></div>
+<div class="pagenum">
+		<strong>92</strong></div>
+<div class="authors">
+		Shan Wang, Cuiping Li, Hong Chen</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-21-Zhang.pdf">A Conversation with Professor Bo Zhang</a></div>
+<div class="pagenum">
+		<strong>97</strong></div>
+<div class="authors">
+		Bo Zhang</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-22-Li-Zhu-Zhou.pdf">A Conversation with Professor Li-Zhu Zhou</a></div>
+<div class="pagenum">
+		<strong>100</strong></div>
+<div class="authors">
+		Li-Zhu Zhou</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-23-Zhi-Hua-Zhou_0.pdf">A Conversation with Professor Zhi-Hua Zhou</a></div>
+<div class="pagenum">
+		<strong>101</strong></div>
+<div class="authors">
+		Zhi-Hua Zhou</div>
+</div>
+<div class="article">
+<div class="title">
+		<a href="/sites/default/files/issues/13-2-2011-12/V13-02-24-Piatetsky-Shapiro.pdf">An Introduction to SIGKDD and A Reflection on the Term &lsquo;Data Mining&rsquo;</a></div>
+<div class="pagenum">
+		<strong>103</strong></div>
+<div class="authors">
+		Gregory Piatetsky-Shapiro, Usama Fayyad</div>
+</div>
+<p>&nbsp;</p>
+      </div>
+
+            <div class="terms">
+        <ul class="links inline"><li class="taxonomy_term_8 first last"><a href="/taxonomy/term/8" rel="tag" title="">Sig KDD newsletter</a></li>
+</ul>      </div>
+          </div><!-- /node-inner-padding -->
+
+      </div><!-- /inner -->
+
+  </div><!-- /node-472 -->
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>                                                                   </div><!-- /content-content -->
+                                                              </div><!-- /content-inner-inner -->
+                            </div><!-- /content-inner -->
+                          </div><!-- /content-region-inner -->
+                        </div><!-- /content-region -->
+
+                                              </div><!-- /content-group-inner -->
+                    </div><!-- /content-group -->
+
+                                      </div><!-- /main-content-inner -->
+                </div><!-- /main-content -->
+
+                              </div><!-- /main-group-inner -->
+            </div><!-- /main-group -->
+          </div><!-- /main-inner -->
+        </div><!-- /main -->
+      </div><!-- /main-wrapper -->
+
+      <!-- postscript-bottom row: width = grid_width -->
+      
+      <!-- footer row: width = grid_width -->
+      <div id="footer-wrapper" class="footer-wrapper full-width">
+<div id="footer" class="footer row grid16-16">
+<div id="footer-inner" class="footer-inner inner clearfix">
+  
+<div id="block-views-resources-block_1" class="block block-views odd first  grid16-8">
+  <div class="inner clearfix">
+            <h2 class="title block-title">Latest Resources</h2>
+        <div class="content clearfix">
+      <div class="view view-resources view-id-resources view-display-id-block_1 view-dom-id-4">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first">
+      
+  <div class="views-field-title">
+                <span class="field-content"><a href="/resources/aaai">AAAI</a></span>
+  </div>
+  </div>
+  <div class="views-row views-row-2 views-row-even">
+      
+  <div class="views-field-title">
+                <span class="field-content"><a href="/resources/american-statistical-association">American Statistical Association</a></span>
+  </div>
+  </div>
+  <div class="views-row views-row-3 views-row-odd">
+      
+  <div class="views-field-title">
+                <span class="field-content"><a href="/resources/kdnuggets">KDNuggets</a></span>
+  </div>
+  </div>
+  <div class="views-row views-row-4 views-row-even views-row-last">
+      
+  <div class="views-field-title">
+                <span class="field-content"><a href="/resources/sigart">SIGART</a></span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>     </div>
+  </div><!-- /block-inner -->
+</div><!-- /block -->
+  
+<div id="block-constant_contact-0" class="block block-constant_contact even  last  grid16-8">
+  <div class="inner clearfix">
+            <h2 class="title block-title">KDD Updates</h2>
+        <div class="content clearfix">
+      <form action="/explorations/issues/8-1-2006-06/7-Ha.pdf"  accept-charset="UTF-8" method="post" id="constant-contact-signup-form">
+<div><div class="form-item" id="edit-cc-email-wrapper">
+ <label for="edit-cc-email">Stay informed on our latest news: <span class="form-required" title="This field is required.">*</span></label>
+ <input type="text" maxlength="128" name="cc_email" id="edit-cc-email" size="30" value="" class="form-text required" />
+</div>
+<input type="submit" name="op" id="edit-submit" value="Signup"  class="form-submit" />
+<input type="hidden" name="form_build_id" id="form-618aa2965f8596a6195b670aa06dc304" value="form-618aa2965f8596a6195b670aa06dc304"  />
+<input type="hidden" name="form_id" id="edit-constant-contact-signup-form" value="constant_contact_signup_form"  />
+
+</div></form>
+    </div>
+  </div><!-- /block-inner -->
+</div><!-- /block -->
+</div><!-- /footer-inner -->
+</div><!-- /footer -->
+</div><!-- /footer-wrapper -->
+
+      <!-- footer-message row: width = grid_width -->
+      <div id="footer-message-wrapper" class="footer-message-wrapper full-width">
+        <div id="footer-message" class="footer-message row grid16-16">
+          <div id="footer-message-inner" class="footer-message-inner inner clearfix">
+                      </div><!-- /footer-message-inner -->
+        </div><!-- /footer-message -->
+      </div><!-- /footer-message-wrapper -->
+
+    </div><!-- /page-inner -->
+  </div><!-- /page -->
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-29269441-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+</body>
+</html>
