@@ -4,6 +4,7 @@ import sys
 import os
 import platform
 
+
 isWindows = platform.platform().lower().startswith('windows')
 
 if isWindows:
