@@ -112,7 +112,10 @@ public class DecisionTreeStragetyID3 implements DecisionTreeStrategy{
 		System.out.print("start");
 		SampleParser sp=new SampleParser("train instance");
 		ClassificationAlgorithm classification=new DecisionTree(new DecisionTreeStragetyID3());
-		SampleSet set=sp.parse("train label");
+		List<Sample> test=sp.parseForTest("train label");
+		SampleSet set=new SampleSet();
+		for (int i=0;i<test.size()/2;i++)
+			set.add(test.get(i));
 		List<Integer> attributeList=new ArrayList<>();
 		for (int i=0;i<set.getData(0).get(0).getAttributes().length;i++)
 		{
@@ -121,9 +124,9 @@ public class DecisionTreeStragetyID3 implements DecisionTreeStrategy{
 		classification.train(set, attributeList);
 		System.out.println("complete timeused="+(System.currentTimeMillis()-currentTime)+"ms");
 		
-		List<Sample> test=sp.parseForTest("train label");
+		
 		int faultCount=0;
-		for (int i=0;i<test.size();i++)
+		for (int i=test.size()/2;i<test.size();i++)
 		{
 			int r=classification.classify(test.get(i));
 			if (r!=test.get(i).getLabel())
