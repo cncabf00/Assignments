@@ -8,6 +8,16 @@ import java.util.List;
 public class SampleSet {
 	List<List<Sample>> data=new ArrayList<List<Sample>>();
 	
+	public static SampleSet generateSampleSet(List<Sample> samples)
+	{
+		SampleSet set=new SampleSet();
+		for (Sample s:samples)
+		{
+			set.add(s);
+		}
+		return set;
+	}
+	
 	public void add(Sample sample)
 	{
 		boolean exist=false;
@@ -22,7 +32,7 @@ public class SampleSet {
 		}
 		if (!exist)
 		{
-			List<Sample> newList=new ArrayList<>();
+			List<Sample> newList=new ArrayList<Sample>();
 			newList.add(sample);
 			data.add(newList);
 		}

@@ -116,7 +116,7 @@ public class DecisionTreeStragetyID3 implements DecisionTreeStrategy{
 		SampleSet set=new SampleSet();
 		for (int i=0;i<test.size()/2;i++)
 			set.add(test.get(i));
-		List<Integer> attributeList=new ArrayList<>();
+		List<Integer> attributeList=new ArrayList<Integer>();
 		for (int i=0;i<set.getData(0).get(0).getAttributes().length;i++)
 		{
 			attributeList.add(i);
