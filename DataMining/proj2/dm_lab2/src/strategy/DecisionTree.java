@@ -31,7 +31,7 @@ public class DecisionTree implements ClassificationAlgorithm {
 	public void train(SampleSet samples,List<Integer> attributeList) {
 		this.trainingSet=samples;
 		tree=new DefaultTreeModel(generateDecisionTree(samples, attributeList));
-		strategy.prune((TreeNode) tree.getRoot(),this);
+//		strategy.prune((TreeNode) tree.getRoot(),this);
 	}
 
 	@Override
