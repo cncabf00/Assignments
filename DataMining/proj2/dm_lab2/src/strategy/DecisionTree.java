@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
 
 import model.Sample;
 import model.SampleSet;
@@ -13,6 +14,7 @@ public class DecisionTree implements ClassificationAlgorithm {
 	TreeModel tree;
 	boolean discrete=false;
 	DecisionTreeStrategy strategy;
+	SampleSet trainingSet;
 	
 	public DecisionTree(DecisionTreeStrategy strategy)
 	{
@@ -27,8 +29,9 @@ public class DecisionTree implements ClassificationAlgorithm {
 
 	@Override
 	public void train(SampleSet samples,List<Integer> attributeList) {
+		this.trainingSet=samples;
 		tree=new DefaultTreeModel(generateDecisionTree(samples, attributeList));
-		strategy.prune();
+		strategy.prune((TreeNode) tree.getRoot(),this);
 	}
 
 	@Override
@@ -40,11 +43,10 @@ public class DecisionTree implements ClassificationAlgorithm {
 	{
 		if (node.isLeaf())
 		{
-//			System.out.println("leaf");
-			return (Integer)node.getUserObject();
+			SplittingCriterion criterion=(SplittingCriterion)node.getUserObject();
+			return criterion.attr;
 		}
 		SplittingCriterion criterion=(SplittingCriterion)node.getUserObject();
-//		System.out.println("by criterion [attr = "+criterion.attr+" split = "+criterion.splitPoints[0]+"]");
 		return classifyStep((DefaultMutableTreeNode) node.getChildAt(criterion.getPosition(sample)), sample);
 	}
 	
@@ -53,17 +55,23 @@ public class DecisionTree implements ClassificationAlgorithm {
 		DefaultMutableTreeNode node=new DefaultMutableTreeNode();
 		if (dataset.getNumOfLabels()==1)
 		{
-			node.setUserObject(dataset.getLabel(0));
+			SplittingCriterion criterion=new SplittingCriterion();
+			criterion.attr=dataset.getLabel(0);
+			node.setUserObject(criterion);
 			return node;
 		}
 		if (attributeList.size()==0)
 		{
-			node.setUserObject(dataset.getLabelOfMajority());
+			SplittingCriterion criterion=new SplittingCriterion();
+			criterion.attr=dataset.getLabelOfMajority();
+			node.setUserObject(criterion);
 			return node;
 		}
 		SplittingCriterion criterion=strategy.selectAttributeForSplitting(dataset, attributeList);
+		criterion.value=0;
+		criterion.value1=0;
 		node.setUserObject(criterion);
-		System.out.println("new node, criterion attr="+criterion.attr+" split="+criterion.splitPoints[0]);
+//		System.out.println("new node, criterion attr="+criterion.attr+" split="+criterion.splitPoints[0]);
 		if (discrete)
 		{
 			for (int i=0;i<attributeList.size();i++)
@@ -100,7 +108,9 @@ public class DecisionTree implements ClassificationAlgorithm {
 			if (sampleSets[i]==null)
 			{
 				DefaultMutableTreeNode child=new DefaultMutableTreeNode();
-				child.setUserObject(dataset.getLabelOfMajority());
+				SplittingCriterion c=new SplittingCriterion();
+				c.attr=dataset.getLabelOfMajority();
+				child.setUserObject(c);
 				node.add(child);
 			}
 			else

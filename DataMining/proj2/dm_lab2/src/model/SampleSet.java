@@ -7,7 +7,16 @@ import java.util.List;
 
 public class SampleSet {
 	List<List<Sample>> data=new ArrayList<List<Sample>>();
+	List<Sample> testSamples = null;
 	
+	public List<Sample> getTestSamples() {
+		return testSamples;
+	}
+
+	public void setTestSamples(List<Sample> testSamples) {
+		this.testSamples = testSamples;
+	}
+
 	public static SampleSet generateSampleSet(List<Sample> samples)
 	{
 		SampleSet set=new SampleSet();
