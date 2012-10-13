@@ -6,7 +6,7 @@ import model.Sample;
 import model.SampleSet;
 
 public interface ClassificationAlgorithm {
-	public void train(SampleSet samples,List<Integer> attributeList);
+  public void train(SampleSet samples, List<Integer> attributeList);
 
-	public int classify(Sample sample);
+  public int classify(Sample sample);
 }
