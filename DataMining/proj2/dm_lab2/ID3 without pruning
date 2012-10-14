@@ -1,0 +1,44 @@
+ID3 without pruning
+10 validation
+validation 0
+start ID3 training using 630 samples
+complete, time used=831ms
+total samples = 70, fault num = 2, fault percent = 0.02857142857142857
+validation 1
+start ID3 training using 630 samples
+complete, time used=825ms
+total samples = 70, fault num = 1, fault percent = 0.014285714285714285
+validation 2
+start ID3 training using 630 samples
+complete, time used=745ms
+total samples = 70, fault num = 5, fault percent = 0.07142857142857142
+validation 3
+start ID3 training using 630 samples
+complete, time used=839ms
+total samples = 70, fault num = 1, fault percent = 0.014285714285714285
+validation 4
+start ID3 training using 630 samples
+complete, time used=828ms
+total samples = 70, fault num = 1, fault percent = 0.014285714285714285
+validation 5
+start ID3 training using 630 samples
+complete, time used=827ms
+total samples = 70, fault num = 2, fault percent = 0.02857142857142857
+validation 6
+start ID3 training using 630 samples
+complete, time used=836ms
+total samples = 70, fault num = 0, fault percent = 0.0
+validation 7
+start ID3 training using 630 samples
+complete, time used=826ms
+total samples = 70, fault num = 0, fault percent = 0.0
+validation 8
+start ID3 training using 630 samples
+complete, time used=778ms
+total samples = 70, fault num = 5, fault percent = 0.07142857142857142
+validation 9
+start ID3 training using 630 samples
+complete, time used=836ms
+total samples = 70, fault num = 2, fault percent = 0.02857142857142857
+validation finished
+test 700 samples in total, average fault rate = 0.027142857142857142

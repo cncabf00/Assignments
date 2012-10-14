@@ -2,7 +2,7 @@
 <projectDescription>
 
     <name>
-dm_lab2
+dm_lab2
     </name>
 
     <comment>
@@ -16,7 +16,7 @@ dm_lab2
         <buildCommand>
 
             <name>
-org.eclipse.jdt.core.javabuilder
+org.eclipse.jdt.core.javabuilder
             </name>
 
             <arguments>
@@ -27,7 +27,7 @@ org.eclipse.jdt.core.javabuilder
     <natures>
 
         <nature>
-org.eclipse.jdt.core.javanature
+org.eclipse.jdt.core.javanature
         </nature>
     </natures>
 

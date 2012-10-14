@@ -106,20 +106,4 @@ public class SampleSet {
     return array;
   }
 
-  public static void main(String[] args) {
-    List<Integer> list = new ArrayList<Integer>();
-    list.add(10);
-    list.add(4);
-    list.add(15);
-    Collections.sort(list, new Comparator<Integer>() {
-
-      @Override
-      public int compare(Integer o1, Integer o2) {
-        return o1 - o2;
-      }
-    });
-    for (int i = 0; i < list.size(); i++) {
-      System.out.print(list.get(i) + " ");
-    }
-  }
 }

@@ -14,6 +14,8 @@ import model.SampleSet;
 
 public class DecisionTreeStrategyC45 implements DecisionTreeStrategy {
 
+  final String name = "C4.5";
+
   @Override
   public SplittingCriterion selectAttributeForSplitting(SampleSet dataset,
       List<Integer> attributeList) {
@@ -40,15 +42,19 @@ public class DecisionTreeStrategyC45 implements DecisionTreeStrategy {
   }
 
   @Override
-  public void prune(TreeNode tree, DecisionTree decisionTree) {
-    List<Sample> testSet = decisionTree.trainingSet.getSortedListByAttribute(0);
+  public void prune(TreeNode tree, List<Sample> pruneSet) {
 
-    for (Sample s : testSet) {
+    for (Sample s : pruneSet) {
       ClassifyInfo info = classifyStep((DefaultMutableTreeNode) tree, s);
       updateNode(info.node, info.label == s.getLabel(), 1);
     }
-    pruneStep((DefaultMutableTreeNode) tree, decisionTree.trainingSet.getSortedListByAttribute(0));
+    pruneStep((DefaultMutableTreeNode) tree, pruneSet);
 
+  }
+  
+  @Override
+  public String getName() {
+    return name;
   }
 
   List<Sample>[] split(SplittingCriterion criterion, List<Sample> samples) {
@@ -81,67 +87,6 @@ public class DecisionTreeStrategyC45 implements DecisionTreeStrategy {
       for (int i = 0; i < node.getChildCount(); i++)
         pruneStep(node.getChildAt(i), lists[i]);
     }
-
-    // double errorsLargestBranch;
-    // double errorsLeaf;
-    // double errorsTree;
-    // TreeNode largestBranch;
-    // int i;
-    //
-    // if (!tree.isLeaf()) {
-    //
-    // // Prune all subtrees.
-    // for (i = 0; i < tree.getChildCount(); i++)
-    // prune(tree.getChildAt(i), decisionTree);
-    //
-    // // Compute error for largest branch
-    // largestBranch = getLargestBranch(tree);
-    // // indexOfLargestBranch = localModel().distribution().maxBag();
-    // boolean m_subtreeRaising = true;
-    // // if (m_subtreeRaising) {
-    // // errorsLargestBranch =
-    // // .getEstimatedErrorsForBranch(largestBranch,decisionTree.trainingSet);
-    // // } else {
-    // errorsLargestBranch = Double.MAX_VALUE;
-    // // }
-    //
-    // // Compute error if this Tree would be leaf
-    // errorsLeaf = getEstimatedErrorsForDistribution((DefaultMutableTreeNode) tree);
-    //
-    // // Compute error for the whole subtree
-    // errorsTree = getEstimatedErrors((DefaultMutableTreeNode) tree);
-    //
-    // // Decide if leaf is best choice.
-    // if (smOrEq(errorsLeaf, errorsTree + 0.1)
-    // && smOrEq(errorsLeaf, errorsLargestBranch + 0.1)) {
-    //
-    // // Free son Trees
-    // DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree;
-    // SplittingCriterion criterion = new SplittingCriterion();
-    // criterion.attr = majorityLabel(node);
-    // node.setUserObject(criterion);
-    // node.removeAllChildren();
-    //
-    // // Get NoSplit Model for node.
-    // return;
-    // }
-    //
-    // // Decide if largest branch is better choice
-    // // than whole subtree.
-    // if (smOrEq(errorsLargestBranch, errorsTree + 0.1)) {
-    // DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree;
-    // if (node.getParent() == null)
-    // decisionTree.tree = new DefaultTreeModel(largestBranch);
-    // else {
-    // DefaultMutableTreeNode parent = (DefaultMutableTreeNode) node
-    // .getParent();
-    // int index = parent.getIndex(node);
-    // parent.remove(index);
-    // parent.insert((MutableTreeNode) largestBranch, index);
-    // }
-    // prune(largestBranch, decisionTree);
-    // }
-    // }
 
   }
 
@@ -191,213 +136,6 @@ public class DecisionTreeStrategyC45 implements DecisionTreeStrategy {
     return Math.sqrt((double) e * (n - e) / n);
   }
 
-  // static double SMALL = 1e-6;
-  //
-  // public static/* @pure@ */boolean smOrEq(double a, double b) {
-  //
-  // return (a - b < SMALL);
-  // }
-  //
-  // TreeNode getLargestBranch(TreeNode node) {
-  // return null;
-  // }
-  //
-  // private double getEstimatedErrors(DefaultMutableTreeNode node) {
-  //
-  // double errors = 0;
-  // int i;
-  //
-  // if (node.isLeaf())
-  // return getEstimatedErrorsForDistribution(node);
-  // else {
-  // for (i = 0; i < node.getChildCount(); i++)
-  // errors = errors
-  // + getEstimatedErrors((DefaultMutableTreeNode) node
-  // .getChildAt(i));
-  // return errors;
-  // }
-  // }
-  //
-  // private double getEstimatedErrorsForDistribution(DefaultMutableTreeNode node) {
-  //
-  // SplittingCriterion criterion = (SplittingCriterion) node
-  // .getUserObject();
-  // if (criterion.value + criterion.value1 == 0)
-  // return 0;
-  // else
-  // return criterion.value1
-  // + addErrs(criterion.value + criterion.value1,
-  // criterion.value1, 0.25);
-  // }
-  //
-  // // int attributeNum(TreeModel tree) {
-  // // return 0;
-  // // }
-  //
-  // private double addErrs(double N, double e, double CF) {
-  //
-  // // Ignore stupid values for CF
-  // if (CF > 0.5) {
-  // System.err.println("WARNING: confidence value for pruning "
-  // + " too high. Error estimate not modified.");
-  // return 0;
-  // }
-  //
-  // // Check for extreme cases at the low end because the
-  // // normal approximation won't work
-  // if (e < 1) {
-  //
-  // // Base case (i.e. e == 0) from documenta Geigy Scientific
-  // // Tables, 6th edition, page 185
-  // double base = N * (1 - Math.pow(CF, 1 / N));
-  // if (e == 0) {
-  // return base;
-  // }
-  //
-  // // Use linear interpolation between 0 and 1 like C4.5 does
-  // return base + e * (addErrs(N, 1, CF) - base);
-  // }
-  //
-  // // Use linear interpolation at the high end (i.e. between N - 0.5
-  // // and N) because of the continuity correction
-  // if (e + 0.5 >= N) {
-  //
-  // // Make sure that we never return anything smaller than zero
-  // return Math.max(N - e, 0);
-  // }
-  //
-  // // Get z-score corresponding to CF
-  // double z = normalInverse(1 - CF);
-  //
-  // // Compute upper limit of confidence interval
-  // double f = (e + 0.5) / N;
-  // double r = (f + (z * z) / (2 * N) + z
-  // * Math.sqrt((f / N) - (f * f / N) + (z * z / (4 * N * N))))
-  // / (1 + (z * z) / N);
-  //
-  // return (r * N) - e;
-  // }
-  //
-  // protected static final double P0[] = { -5.99633501014107895267E1,
-  // 9.80010754185999661536E1, -5.66762857469070293439E1,
-  // 1.39312609387279679503E1, -1.23916583867381258016E0, };
-  // protected static final double Q0[] = {
-  // /* 1.00000000000000000000E0, */
-  // 1.95448858338141759834E0, 4.67627912898881538453E0,
-  // 8.63602421390890590575E1, -2.25462687854119370527E2,
-  // 2.00260212380060660359E2, -8.20372256168333339912E1,
-  // 1.59056225126211695515E1, -1.18331621121330003142E0, };
-  //
-  // protected static final double P1[] = { 4.05544892305962419923E0,
-  // 3.15251094599893866154E1, 5.71628192246421288162E1,
-  // 4.40805073893200834700E1, 1.46849561928858024014E1,
-  // 2.18663306850790267539E0, -1.40256079171354495875E-1,
-  // -3.50424626827848203418E-2, -8.57456785154685413611E-4, };
-  // protected static final double Q1[] = {
-  // /* 1.00000000000000000000E0, */
-  // 1.57799883256466749731E1, 4.53907635128879210584E1,
-  // 4.13172038254672030440E1, 1.50425385692907503408E1,
-  // 2.50464946208309415979E0, -1.42182922854787788574E-1,
-  // -3.80806407691578277194E-2, -9.33259480895457427372E-4, };
-  //
-  // protected static final double P2[] = { 3.23774891776946035970E0,
-  // 6.91522889068984211695E0, 3.93881025292474443415E0,
-  // 1.33303460815807542389E0, 2.01485389549179081538E-1,
-  // 1.23716634817820021358E-2, 3.01581553508235416007E-4,
-  // 2.65806974686737550832E-6, 6.23974539184983293730E-9, };
-  // protected static final double Q2[] = {
-  // /* 1.00000000000000000000E0, */
-  // 6.02427039364742014255E0, 3.67983563856160859403E0,
-  // 1.37702099489081330271E0, 2.16236993594496635890E-1,
-  // 1.34204006088543189037E-2, 3.28014464682127739104E-4,
-  // 2.89247864745380683936E-6, 6.79019408009981274425E-9, };
-  //
-  // double normalInverse(double y0) {
-  //
-  // double x, y, z, y2, x0, x1;
-  // int code;
-  //
-  // final double s2pi = Math.sqrt(2.0 * Math.PI);
-  //
-  // if (y0 <= 0.0)
-  // throw new IllegalArgumentException();
-  // if (y0 >= 1.0)
-  // throw new IllegalArgumentException();
-  // code = 1;
-  // y = y0;
-  // if (y > (1.0 - 0.13533528323661269189)) { /* 0.135... = exp(-2) */
-  // y = 1.0 - y;
-  // code = 0;
-  // }
-  //
-  // if (y > 0.13533528323661269189) {
-  // y = y - 0.5;
-  // y2 = y * y;
-  // x = y + y * (y2 * polevl(y2, P0, 4) / p1evl(y2, Q0, 8));
-  // x = x * s2pi;
-  // return (x);
-  // }
-  //
-  // x = Math.sqrt(-2.0 * Math.log(y));
-  // x0 = x - Math.log(x) / x;
-  //
-  // z = 1.0 / x;
-  // if (x < 8.0) /* y > exp(-32) = 1.2664165549e-14 */
-  // x1 = z * polevl(z, P1, 8) / p1evl(z, Q1, 8);
-  // else
-  // x1 = z * polevl(z, P2, 8) / p1evl(z, Q2, 8);
-  // x = x0 - x1;
-  // if (code != 0)
-  // x = -x;
-  // return (x);
-  // }
-  //
-  // public static double polevl(double x, double coef[], int N) {
-  //
-  // double ans;
-  // ans = coef[0];
-  //
-  // for (int i = 1; i <= N; i++)
-  // ans = ans * x + coef[i];
-  //
-  // return ans;
-  // }
-  //
-  // public static double p1evl(double x, double coef[], int N) {
-  //
-  // double ans;
-  // ans = x + coef[0];
-  //
-  // for (int i = 1; i < N; i++)
-  // ans = ans * x + coef[i];
-  //
-  // return ans;
-  // }
-  //
-  // // double pruneStep(DefaultMutableTreeNode node, int totalNum, int attrNum,
-  // // double[] labels) {
-  // // if (node.isLeaf()) {
-  // // return computeCost(node, labels) + 1;
-  // // }
-  // // double minCost1 = pruneStep(
-  // // (DefaultMutableTreeNode) node.getChildAt(0), totalNum, attrNum,
-  // // labels);
-  // // double minCost2 = pruneStep(
-  // // (DefaultMutableTreeNode) node.getChildAt(1), totalNum, attrNum,
-  // // labels);
-  // // double costSplit = MyMath.log2(attrNum) + MyMath.log2(2 - 1);
-  // // double c1 = computeCost(node, labels) + 1;
-  // // double c2 = costSplit + 1 + minCost1 + minCost2;
-  // // if (c1 < c2) {
-  // // DefaultMutableTreeNode n = new DefaultMutableTreeNode();
-  // // n.setUserObject(majorityLabel(node));
-  // // node.removeAllChildren();
-  // // node.add(n);
-  // // return c1;
-  // // }
-  // // return c2;
-  // // }
-  //
   int majorityLabel(DefaultMutableTreeNode node) {
     DefaultMutableTreeNode leaf = node.getFirstLeaf();
     Map<Integer, Integer> map = new HashMap<Integer, Integer>();
@@ -422,13 +160,6 @@ public class DecisionTreeStrategyC45 implements DecisionTreeStrategy {
     }
     return label;
   }
-
-  // double computeCost(DefaultMutableTreeNode node,double[] labels)
-  // {
-  // double cost=0;
-  // node.getFirstLeaf()
-  // return cost;
-  // }
 
   void updateNode(TreeNode node, Boolean correct, int num) {
     DefaultMutableTreeNode n = (DefaultMutableTreeNode) node;
@@ -522,36 +253,16 @@ public class DecisionTreeStrategyC45 implements DecisionTreeStrategy {
     return l;
   }
 
-  public static void main(String[] args) {
-    int fold = 10;
+  public static void test(int fold) {
     SampleParser sp = new SampleParser("train instance");
     Validator validator = new Validator(sp.parseForTest("train label"), fold);
-    for (int k = 0; k < fold; k++) {
-      System.out.println("validation " + k);
-      long currentTime = System.currentTimeMillis();
-      System.out.print("start");
 
-      ClassificationAlgorithm classification = new DecisionTree(new DecisionTreeStrategyC45());
-      SampleSet set = validator.nextSampleSet();
-      set.setTestSamples(validator.getCurrentTestSet());
-      List<Integer> attributeList = new ArrayList<Integer>();
-      for (int i = 0; i < set.getData(0).get(0).getAttributes().length; i++) {
-        attributeList.add(i);
-      }
-      classification.train(set, attributeList);
-      System.out.println("complete timeused=" + (System.currentTimeMillis() - currentTime) + "ms");
+    ClassificationAlgorithm algorithm = new DecisionTree(new DecisionTreeStrategyC45());
+    validator.validate(algorithm, "C4.5 with pruning");
 
-      int faultCount = 0;
-      List<Sample> test = validator.getCurrentTestSet();
-      for (int i = 0; i < test.size(); i++) {
-        int r = classification.classify(test.get(i));
-        if (r != test.get(i).getLabel()) {
-          faultCount++;
-        }
-      }
-      System.out.println("falut percent = " + (double) faultCount / test.size());
-    }
-
+    algorithm = new DecisionTree(new DecisionTreeStrategyC45());
+    ((DecisionTree) algorithm).setUsePrune(false);
+    validator.validate(algorithm, "C4.5 without pruning");
   }
 
 }

@@ -12,8 +12,9 @@ import model.Sample;
 import model.SampleParser;
 import model.SampleSet;
 
-public class DecisionTreeStragtegyID3 implements DecisionTreeStrategy {
+public class DecisionTreeStrategyID3 implements DecisionTreeStrategy {
 
+  final String name = "ID3";
 
   @Override
   public SplittingCriterion selectAttributeForSplitting(SampleSet dataset,
@@ -31,15 +32,18 @@ public class DecisionTreeStragtegyID3 implements DecisionTreeStrategy {
 
 
   @Override
-  public void prune(TreeNode tree, DecisionTree decisionTree) {
-    List<Sample> testSet = decisionTree.trainingSet.getSortedListByAttribute(0);
-
-    for (Sample s : testSet) {
+  public void prune(TreeNode tree, List<Sample> pruneSet) {
+    for (Sample s : pruneSet) {
       ClassifyInfo info = classifyStep((DefaultMutableTreeNode) tree, s);
       updateNode(info.node, info.label == s.getLabel(), 1);
     }
-    pruneStep((DefaultMutableTreeNode) tree, decisionTree.trainingSet.getSortedListByAttribute(0));
+    pruneStep((DefaultMutableTreeNode) tree, pruneSet);
 
+  }
+  
+  @Override
+  public String getName() {
+    return name;
   }
 
   List<Sample>[] split(SplittingCriterion criterion, List<Sample> samples) {
@@ -230,37 +234,17 @@ public class DecisionTreeStragtegyID3 implements DecisionTreeStrategy {
     return minResult;
   }
 
-
-  public static void main(String[] args) {
-    int fold = 10;
+  public static void test(int fold) {
     SampleParser sp = new SampleParser("train instance");
     Validator validator = new Validator(sp.parseForTest("train label"), fold);
-    for (int k = 0; k < fold; k++) {
-      System.out.println("validation " + k);
-      long currentTime = System.currentTimeMillis();
-      System.out.print("start");
 
-      ClassificationAlgorithm classification = new DecisionTree(new DecisionTreeStragtegyID3());
-      SampleSet set = validator.nextSampleSet();
-      List<Integer> attributeList = new ArrayList<Integer>();
-      for (int i = 0; i < set.getData(0).get(0).getAttributes().length; i++) {
-        attributeList.add(i);
-      }
-      classification.train(set, attributeList);
-      System.out.println("complete timeused=" + (System.currentTimeMillis() - currentTime) + "ms");
+    ClassificationAlgorithm algorithm = new DecisionTree(new DecisionTreeStrategyID3());
+    validator.validate(algorithm, "ID3 with pruning");
 
-
-      int faultCount = 0;
-      List<Sample> test = validator.getCurrentTestSet();
-      for (int i = 0; i < test.size(); i++) {
-        int r = classification.classify(test.get(i));
-        if (r != test.get(i).getLabel()) {
-          faultCount++;
-        }
-      }
-      System.out.println("falut percent = " + (double) faultCount / test.size());
-    }
-
-
+    algorithm = new DecisionTree(new DecisionTreeStrategyID3());
+    ((DecisionTree) algorithm).setUsePrune(false);
+    validator.validate(algorithm, "ID3 without pruning");
   }
+
+  
 }

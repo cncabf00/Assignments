@@ -12,7 +12,9 @@ public interface DecisionTreeStrategy {
 
   SplittingCriterion selectAttributeForSplitting(SampleSet dataset, List<Integer> attributeList);
 
-  void prune(TreeNode tree, DecisionTree decisionTree);
+  void prune(TreeNode tree, List<Sample> pruneSet);
+
+  public String getName();
 }
 
 

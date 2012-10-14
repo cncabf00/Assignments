@@ -145,17 +145,4 @@ public class SampleParser {
 
     return samples;
   }
-
-  public static void main(String args[]) {
-    // SampleParser sp=new SampleParser("train instance", "train label");
-    // SampleSet samples=sp.parse();
-    // for(Sample s:samples)
-    // {
-    // for (int i=0;i<s.attributes.length;i++)
-    // System.out.print(s.attributes[i]+" ");
-    // System.out.println();
-    // // System.out.println(s.attributes);
-    // System.out.println(s.label);
-    // }
-  }
 }

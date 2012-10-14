@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
 
 import model.Sample;
 import model.SampleSet;
@@ -14,6 +15,7 @@ public class DecisionTree implements ClassificationAlgorithm {
   boolean discrete = false;
   DecisionTreeStrategy strategy;
   SampleSet trainingSet;
+  boolean usePrune = true;
 
   public DecisionTree(DecisionTreeStrategy strategy) {
     this.strategy = strategy;
@@ -24,16 +26,31 @@ public class DecisionTree implements ClassificationAlgorithm {
     this.discrete = discrete;
   }
 
+  public void setUsePrune(boolean usePrune) {
+    this.usePrune = usePrune;
+  }
+
   @Override
   public void train(SampleSet samples, List<Integer> attributeList) {
     this.trainingSet = samples;
     tree = new DefaultTreeModel(generateDecisionTree(samples, attributeList));
-    // strategy.prune((TreeNode) tree.getRoot(),this);
+    if (usePrune)
+      strategy.prune((TreeNode) tree.getRoot(), this.trainingSet.getSortedListByAttribute(0));
   }
 
   @Override
   public int classify(Sample sample) {
     return classifyStep((DefaultMutableTreeNode) tree.getRoot(), sample);
+  }
+
+  @Override
+  public String getName() {
+    return strategy.getName();
+  }
+
+  @Override
+  public String getDescription() {
+    return strategy.getName() + " " + (usePrune ? "with pruning" : "without pruning");
   }
 
   int classifyStep(DefaultMutableTreeNode node, Sample sample) {
@@ -103,5 +120,7 @@ public class DecisionTree implements ClassificationAlgorithm {
     }
     return node;
   }
+
+
 
 }

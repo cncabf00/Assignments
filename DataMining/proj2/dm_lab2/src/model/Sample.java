@@ -25,5 +25,4 @@ public class Sample {
     this.label = label;
   }
 
-
 }
