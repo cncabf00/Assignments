@@ -1,0 +1,5 @@
+S,NP VP
+NP,ART N
+NP,ART ADJ N
+VP,V
+VP,V NP

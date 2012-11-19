@@ -1,0 +1,5 @@
+the ART
+cat N
+caught V
+a ART
+mouse N

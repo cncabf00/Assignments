@@ -1,0 +1,3 @@
+project 3--chart parse
+用法:运行后输入一句英语句子(case sensitive),程序对其进行chart parsing,最后输出chart中所有内容.
+注:由于词典文件和规则文件都是手写的,因此只支持很少的一部分.但是对于课上所给例子"the cat caught a mouse"是可以正常分析的
