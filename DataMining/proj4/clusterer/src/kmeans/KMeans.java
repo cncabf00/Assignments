@@ -50,6 +50,10 @@ public class KMeans {
 			disSum=newDisSum;
 		}
 //		System.out.println("end clustering");
+		for (Cluster cluster:clusters)
+        {
+          cluster.clean();
+        }
 		return clusters;
 	}
 	
@@ -66,6 +70,13 @@ public class KMeans {
 			Cluster cluster=getNearestCluster(item);
 			cluster.add(item);
 		}
+		List<Cluster> oldClusters=clusters;
+        clusters=new ArrayList<>();
+        for (Cluster cluster:oldClusters)
+        {
+          if (cluster.items.size()>0)
+            clusters.add(cluster);
+        }
 		double newDisSum=0;
 		for (int i=0;i<clusters.size();i++)
 		{
@@ -89,4 +100,28 @@ public class KMeans {
 		}
 		return clusters.get(pos);
 	}
+	
+	public void pointToDistanceToNearest(Item item,int suggestLabel)
+    {
+      double distance=Double.MAX_VALUE;
+      double min=Double.MAX_VALUE;
+      for (int i=0;i<clusters.size();i++)
+      {
+        double d=clusters.get(i).getDistance(item);
+        if (clusters.get(i).label==suggestLabel)
+        {
+          if (d<distance)
+          {
+            distance=d;
+          }
+        }
+        if (d<min)
+        {
+          min=d;
+          item.label=clusters.get(i).label;
+        }
+      }
+      item.dis=distance;
+    }
+	
 }

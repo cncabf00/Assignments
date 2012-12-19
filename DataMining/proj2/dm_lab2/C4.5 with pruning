@@ -2,43 +2,43 @@ C4.5 with pruning
 10 validation
 validation 0
 start C4.5 training using 630 samples
-complete, time used=1267ms
+complete, time used=1346ms
 total samples = 70, fault num = 2, fault percent = 0.02857142857142857
 validation 1
 start C4.5 training using 630 samples
-complete, time used=1322ms
+complete, time used=1424ms
 total samples = 70, fault num = 1, fault percent = 0.014285714285714285
 validation 2
 start C4.5 training using 630 samples
-complete, time used=1236ms
+complete, time used=1293ms
 total samples = 70, fault num = 3, fault percent = 0.04285714285714286
 validation 3
 start C4.5 training using 630 samples
-complete, time used=1144ms
+complete, time used=1182ms
 total samples = 70, fault num = 3, fault percent = 0.04285714285714286
 validation 4
 start C4.5 training using 630 samples
-complete, time used=1249ms
+complete, time used=1282ms
 total samples = 70, fault num = 1, fault percent = 0.014285714285714285
 validation 5
 start C4.5 training using 630 samples
-complete, time used=1175ms
+complete, time used=1259ms
 total samples = 70, fault num = 2, fault percent = 0.02857142857142857
 validation 6
 start C4.5 training using 630 samples
-complete, time used=1328ms
+complete, time used=1412ms
 total samples = 70, fault num = 1, fault percent = 0.014285714285714285
 validation 7
 start C4.5 training using 630 samples
-complete, time used=1334ms
+complete, time used=1399ms
 total samples = 70, fault num = 0, fault percent = 0.0
 validation 8
 start C4.5 training using 630 samples
-complete, time used=1256ms
+complete, time used=1292ms
 total samples = 70, fault num = 2, fault percent = 0.02857142857142857
 validation 9
 start C4.5 training using 630 samples
-complete, time used=1171ms
+complete, time used=1202ms
 total samples = 70, fault num = 3, fault percent = 0.04285714285714286
 validation finished
 test 700 samples in total, average fault rate = 0.025714285714285714

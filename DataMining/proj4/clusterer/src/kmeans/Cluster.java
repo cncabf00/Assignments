@@ -14,7 +14,11 @@ public class Cluster {
 		double distance=0;
 		for (int i=0;i<item.fields.length;i++)
 		{
-			distance+=Math.sqrt((center[i]-item.fields[i])*(center[i]-item.fields[i]))*Item.weights[i]*Item.bonusWights[i];
+			distance+=Math.sqrt((center[i]-item.fields[i])*(center[i]-item.fields[i]))*Item.weights[i]*Item.bonusWeights[i];
+		}
+		if (Double.isNaN(distance))
+		{
+		  System.out.println("nan");
 		}
 		return distance;
 	}
@@ -30,7 +34,13 @@ public class Cluster {
 				center[i]+=item.fields[i];
 		}
 		for (int i=0;i<center.length;i++)
+		{
 			center[i]/=items.size();
+			if (Double.isNaN(center[i]))
+			{
+			  System.out.println("nan");
+			}
+		}
 	}
 	
 	public double getDisSum()
@@ -49,5 +59,25 @@ public class Cluster {
 		computeCenter();
 		items=new HashSet<Item>();
 		disSum=0;
+	}
+	
+	public void clean()
+	{
+	  int k=0;
+	  for (int i=0;i<k;i++)
+	  {
+	    double avgDis=disSum/items.size();
+	    Set<Item> oldItems=items;
+	    items=new HashSet<>();
+	    disSum=0;
+	    for (Item item:oldItems)
+	    {
+	      if (getDistance(item)<=avgDis)
+	      {
+	        add(item);
+	      }
+	    }
+	    computeCenter();
+	  }
 	}
 }

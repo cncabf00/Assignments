@@ -10,7 +10,28 @@ import java.util.List;
 
 public class Parser {
 
-	
+	public void readBounsWeight(String filename)
+	{
+	  File file=new File(filename);
+  	  try {
+        BufferedReader reader=new BufferedReader(new FileReader(file));
+        String line=reader.readLine();
+        String[] strs=line.split(" ");
+        Item.bonusWeights=new double[Item.fieldNames.length];
+        for (int i=0;i<Item.fieldNames.length;i++)
+        {
+          Item.bonusWeights[i]=1;
+        }
+        reader.close();
+      } catch (FileNotFoundException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+	}
+  
 	public List<List<Item>> parseTrainingFile(String filename)
 	{
 //		System.out.println("parsing training file "+filename);
@@ -23,16 +44,27 @@ public class Parser {
 		try {
 			BufferedReader reader=new BufferedReader(new FileReader(file));
 			String line=reader.readLine();
-			String[] strs=line.split(" ");
-			Item.fieldNames=strs;
-			line=reader.readLine();
-			strs=line.split(" ");
-			Item.weights=new double[Item.fieldNames.length];
-			Item.bonusWights=new double[Item.fieldNames.length];
-			for (int i=0;i<strs.length;i++)
+			List<String> fields=new ArrayList<>();
+			while (!line.toLowerCase().startsWith("@data"))
 			{
-				Item.weights[i]=Double.parseDouble(strs[i]);
-				Item.bonusWights[i]=1;
+			  String strs[]=line.split(" ");
+			  if (strs[0].toLowerCase().equals("@attribute"))
+			  {
+			    fields.add(strs[1]);
+			  }
+			  line=reader.readLine();
+			}
+			Item.fieldNames=fields.subList(0, fields.size()-1).toArray(new String[0]);
+//			String[] strs=line.split(" ");
+//			line=reader.readLine();
+//			strs=line.split(" ");
+			Item.weights=new double[Item.fieldNames.length];
+			Item.bonusWeights=new double[Item.fieldNames.length];
+			for (int i=0;i<Item.fieldNames.length;i++)
+			{
+//				Item.weights[i]=Double.parseDouble(strs[i]);
+			  Item.weights[i]=1;
+			  Item.bonusWeights[i]=1;
 			}
 //			Item.bonusWights[10]=100;
 			line=reader.readLine();
@@ -43,15 +75,22 @@ public class Parser {
 					line=reader.readLine();
 					continue;
 				}
-				strs=line.split(" ");
+				String[] strs=line.split(" ");
 				Item item=new Item();
-				item.id=strs[0];
+//				item.id=strs[0];
 				item.fields=new double[Item.fieldNames.length];
 				for (int i=0;i<item.fields.length;i++)
 				{
-					item.fields[i]=Double.parseDouble(strs[i+1]);
+					item.fields[i]=Double.parseDouble(strs[i]);
+					if (Double.isNaN(item.fields[i]))
+					{
+					  System.out.println(line);
+				    }
 				}
-				item.type=Integer.parseInt(strs[strs.length-1]);
+				if (strs[strs.length-1].equals("terminated"))
+				  item.type=1;
+				else
+				  item.type=0;
 				lists.get(item.type).add(item);
 				line=reader.readLine();
 			}
