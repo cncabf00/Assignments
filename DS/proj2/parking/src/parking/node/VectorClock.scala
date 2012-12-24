@@ -8,6 +8,7 @@ object Greater extends Exception
   var internalClock=Map(id->0)
   
   def lessThan(another:VectorClock):Boolean={
+    this.synchronized{
     var lessEqual=false
     var less=false
     try
@@ -31,10 +32,11 @@ object Greater extends Exception
       case Greater=>false
       case ex:java.util.NoSuchElementException=>println("vector clock "+id+" missed a dimension: "+ex.getMessage());false
     }
+    }
   }
   
   def sync(another:VectorClock)={
-//    if (another.id!=this.id)
+    if (another.id!=this.id || another.internalClock.size!=this.internalClock.size)
     {
       this.synchronized
       {
@@ -51,17 +53,23 @@ object Greater extends Exception
   }
   
   def addDimension(newDimension:Int)={
+    this.synchronized{
     internalClock+=(newDimension->0)
+    }
   }
   
   def tick()={
+    this.synchronized{
     internalClock+=(id->(internalClock(id)+1))
+  }
   }
   
   def copy()={
+    this.synchronized{
     var selfCopy=new VectorClock(id)
     selfCopy.sync(this)
     selfCopy
+  }
   }
   
   def canEqual(other: Any) = {
@@ -69,35 +77,38 @@ object Greater extends Exception
   }
   
   override def equals(other: Any) = {
+    this.synchronized{
     other match {
       case that: parking.node.VectorClock => {
-        if (internalClock.size!=that.internalClock.size || id!=that.id){
-          false
-        }
-        else{
-        var equal=true
-		    try
-		    {
-		      breakable{
-		      internalClock.foreach{
-		        case (id,time) => {
-		          val thatTime=that.internalClock(id)
-		          if (time!=thatTime){
-		            equal=false
-		            break
-		            }
-		          }
-		        }
-		      }
-		      equal
-		    }
-		    catch {
-		      case ex:java.util.NoSuchElementException=>false
-		    }
-        }
+        this.id==that.id && internalClock(id)==that.internalClock(id)
+//        if (internalClock.size!=that.internalClock.size || id!=that.id){
+//          false
+//        }
+//        else{
+//        var equal=true
+//		    try
+//		    {
+//		      breakable{
+//		      internalClock.foreach{
+//		        case (id,time) => {
+//		          val thatTime=that.internalClock(id)
+//		          if (time!=thatTime){
+//		            equal=false
+//		            break
+//		            }
+//		          }
+//		        }
+//		      }
+//		      equal
+//		    }
+//		    catch {
+//		      case ex:java.util.NoSuchElementException=>false
+//		    }
+//        }
       }
       case _ => false
     }
+  }
   }
   
   

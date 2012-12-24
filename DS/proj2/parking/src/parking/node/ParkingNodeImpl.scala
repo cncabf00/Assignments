@@ -38,14 +38,23 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
 
   var responses = List[Response]()
   var permitSent = false
+  val todoLock=new Object()
+  val waitingCarLock=new Object()
+  val otherNodeLock=new Object()
+  val responseLock=new Object()
+  val parkingLock=new Object()
+  val snapshotRequestorLock=new Object()
+  val markerInfoLock=new Object()
 
   def requestClock(externalClock: VectorClock): VectorClock = {
     syncTime(externalClock).copy
   }
 
-  def allowParking(sender: Int, refClock: VectorClock) = {
-    println(tag + "allowed by node "+sender)
-    responses.synchronized {
+  def allowParking(sender: Int, refClock: VectorClock,externalClock:VectorClock) = {
+    tick
+    syncTime(externalClock)
+    responseLock.synchronized {
+//      println(tag + "allowed by node "+sender)
 //      breakable {
         (responses.filter(response=>response.clock.equals(refClock))).foreach(response=>response.received+=(sender->true))
 //        responses.foreach(response => {
@@ -59,7 +68,7 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
 //      }
 
       if (!responses.head.received.values.exists(p=>p==false)) {
-              println(tag + "all allowed")
+//              println(tag + "all allowed")
         parkACar
 
         responses = responses.tail
@@ -70,15 +79,17 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
   }
 
   def occupyAPlace(actor: Int, clock: VectorClock, refClock: VectorClock) = {
-    this.synchronized {
+    parkingLock.synchronized {
       parkingPlace -= 1
-            println(tag+"parkingPlace-1,now="+parkingPlace)
-      todos.synchronized {
+//            println(tag+"parkingPlace-1,now="+parkingPlace)
+      todoLock.synchronized {
         //        todos.foreach(clock=>{
         //          println(tag+"in todo: id="+clock.id+", clock="+clock.internalClock)
         //        })
         if (!todos.isEmpty && todos.head.equals(refClock)) {
-          todos = todos.tail
+//          todos = todos.filter(clock=>(!clock.equals(refClock)))
+//          println(tag+"pop todos next is node "+(if (todos.tail.isEmpty) "null" else todos.tail.head.id))
+          todos=todos.tail
           permitSent = false
         }
         //      if (!todos.isEmpty)
@@ -86,7 +97,7 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
 
         //      println(tag+"permitSent="+permitSent)
       }
-      markerInfos.synchronized{
+      markerInfoLock.synchronized{
 	      if (actor != id) {
 	        markerInfos.foreach(p => {
 	          if (p._2.waitingMarker.contains(actor) && p._2.waitingMarker(actor))
@@ -94,31 +105,35 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
 	        })
 	      }
       }
+      tick
+      syncTime(clock)
     }
 
-    syncTime(clock)
+    
     //    }
   }
 
   def checkSnapShot(marker: Marker, info: MarkerInfo) = {
-    snapshotRequestors.synchronized{
+    snapshotRequestorLock.synchronized{
     if (!info.waitingMarker.exists(p => p._2 == true) && !info.sendingMarker.exists(p => p._2 == true)) {
       //      println(tag+"snapshot end")
       if (snapshotRequestors.contains(marker)) {
-        snapshotRequestors(marker).snapshotCallBack(info.parkingPlaceSnapshot,marker)
+        tick
+        snapshotRequestors(marker).snapshotCallBack(info.parkingPlaceSnapshot,marker,clock)
         snapshotRequestors -= marker
       }
     }
     }
   }
 
-  def receiveMark(marker: Marker, sender: Int) = {
+  def receiveMark(marker: Marker, sender: Int,externalClock:VectorClock) = {
     //    println(tag+"receive maker from node "+sender)
-    markerInfos.synchronized {
+    markerInfoLock.synchronized {
+      syncTime(externalClock)
       if (!markerInfos.contains(marker)) {
         createMarkerInfo(marker)
         sendMarkerToAll(marker)
-        snapshotRequestors.synchronized{
+        snapshotRequestorLock.synchronized{
         snapshotRequestors += (marker -> marker.requestor)
         }
       }
@@ -133,17 +148,19 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
 
   def addNode(node: ParkingNode) = {
     //    println(tag+"add node "+node.getId)
-    otherNodes.synchronized{
+    otherNodeLock.synchronized{
     otherNodes = otherNodes ::: List(node)
     clock.addDimension(node.getId)
     sendLocks += (node.getId -> new Object)
     }
   }
 
-  def snapshotCallBack(result: Int,marker:Marker) = {
-    this.synchronized{
+  def snapshotCallBack(result: Int,marker:Marker,externalClock:VectorClock) = {
+    parkingLock.synchronized{
       if (!initialized)
       {
+        tick
+        syncTime(externalClock)
     	  parkingPlace += result-markerInfos(marker).parkingPlaceSnapshot
           initialized = true
           checkTodos
@@ -151,29 +168,33 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
     }
     //    println(tag+"initialized")
     //    println(tag+"current parking places="+parkingPlace)
-    //    todos.synchronized
+    //    todoLock.synchronized
     //    {
     
     //    }
   }
 
   def sendMark(node: ParkingNode, marker: Marker) = {
+    tick
+    val clockCopy=clock.copy
     class MarkerSender extends Actor {
       def act() {
         sendLocks(node.getId).synchronized {
           //          println(tag+"send marker from node "+id+" to node "+node.getId)
-          node.receiveMark(marker, id)
+          val info = markerInfos(marker)
+    info.sendingMarker.synchronized {
+      info.sendingMarker += (node.getId -> false)
+      //        	  println(tag+"send marker from node "+id+" to node "+node.getId+"\n"+info.sendingMarker)
+      checkSnapShot(marker, info)
+    }
+          node.receiveMark(marker, id,clockCopy)
 
         }
       }
     }
     (new MarkerSender).start
-    val info = markerInfos(marker)
-    info.sendingMarker.synchronized {
-      info.sendingMarker += (node.getId -> false)
-      //        	  println(tag+"send marker from node "+id+" to node "+node.getId+"\n"+info.sendingMarker)
-    }
-    checkSnapShot(marker, info)
+    
+    
   }
 
   def sendMarkerToAll(marker: Marker) = {
@@ -182,16 +203,18 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
   }
 
   def addToTodo(clockCopy: VectorClock) = {
-    todos.synchronized {
+    todoLock.synchronized {
+      tick
       syncTime(clockCopy)
       todos = todos ::: List(clockCopy)
       todos = todos.sortWith((x, y) => x.lessThan(y))
       //    	todos.foreach(clock=>{
       //    	  println(tag+"in todos:"+clock.internalClock)
       //    	})
+      checkTodos
     }
 
-    checkTodos
+    
   }
 
   def sendParkingInfo(node: ParkingNode, clockCopy: VectorClock) = {
@@ -202,7 +225,7 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
 
   def takeSnapshot(): Marker = {
     //    println(tag+"start taking snapshot")
-    //    this.synchronized {
+    //    parkingLock.synchronized {
     @serializable val marker = new Marker(System.nanoTime(), id, this)
     createMarkerInfo(marker)
     sendMarkerToAll(marker)
@@ -214,20 +237,21 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
     
     val markerInfo = new MarkerInfo()
     markerInfo.parkingPlaceSnapshot = parkingPlace
-    otherNodes.synchronized{
+    otherNodeLock.synchronized{
     otherNodes.foreach(node => markerInfo.waitingMarker += (node.getId -> true))
     otherNodes.foreach(node => markerInfo.sendingMarker += (node.getId -> true))
-    }
+    
     //    println(tag+"create maker info waitingMarker="+markerInfo.waitingMarker+" sendingMarker="+markerInfo.sendingMarker)
-    markerInfos.synchronized{
+    markerInfoLock.synchronized{
     markerInfos += (marker -> markerInfo)
+    }
     }
   }
 
   def parkACar() = {
     //    println(tag+"park a car")
     //    waitingCars.foreach(f)
-    waitingCars.synchronized {
+    waitingCarLock.synchronized {
     val car = waitingCars.head
     tick
     val clockCopy = clock.copy
@@ -254,13 +278,15 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
     //        parkACar(waitingCars.head)
     //      }
     //    println(tag+"check todo, current parking place="+parkingPlace+" permitSent="+permitSent+", todo list="+todos.length)
-    todos.synchronized {
+    todoLock.synchronized {
       if (parkingPlace > 0 && !todos.isEmpty && !permitSent) {
+//        println(tag+"first in todos is node "+todos.head.id)
         if (todos.head.id != id) {
           for (node <- otherNodes) {
             breakable {
               if (node.getId == todos.head.id) {
-                node.allowParking(id, todos.head)
+//                println(tag+"allow node "+todos.head.id)
+                node.allowParking(id, todos.head, clock)
                 permitSent = true
                 //	            println(tag+"permitSent="+permitSent)
                 break
@@ -285,7 +311,7 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
 	    clock
     }
     //    println(tag+"after sync "+clock.internalClock)
-    //    todos.synchronized {
+    //    todoLock.synchronized {
     //      todos.foreach(timestamp => {
     //        if (!timestamp.lessEqual(clock)) {
     //          todos -= timestamp
@@ -296,19 +322,19 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
   }
 
   def tryToPark() = {
-
+	  responseLock.synchronized {
     tick
     val clockCopy = clock.copy
     addToTodo(clockCopy)
     //    println(tag+"car No."+waitingCars.last.id+" has a vector time "+clockCopy.internalClock)
 
-    responses.synchronized {
+    
       var response = new Response(clockCopy)
       otherNodes.foreach(node => {
         response.received += (node.getId -> false)
       })
       responses = responses ::: List(response)
-    }
+    
     otherNodes.foreach(node => {
       class Parker extends Actor {
         def act() {
@@ -317,13 +343,14 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
       }
       (new Parker).start
     })
+	  }
     //    println(tag+"try to park")
     //    if (parkingPlace > 0) {
     ////      println(tag+parkingPlace+" places are available")
-    ////      waitingCars.synchronized {
+    ////      waitingCarLock.synchronized {
     //        if (!waitingCars.isEmpty) {
     ////          println(tag+waitingCars.length+" cars are waiting")
-    ////          todos.synchronized {
+    ////          todoLock.synchronized {
     //            if (todos.isEmpty) {
     ////              println(tag+"request clocks")
     //              clock.tick
@@ -345,7 +372,7 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
   }
 
   def onCarArrival(car: Car) = {
-        waitingCars.synchronized {
+        waitingCarLock.synchronized {
     waitingCars = waitingCars ::: List(car)
     waitingCars.foreach(car => {
       //        println(tag+"cars: "+car.id)
@@ -366,9 +393,9 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
   }
 
   def informCarLeft(actor: Int, externalClock: VectorClock) = {
-        this.synchronized {
+        parkingLock.synchronized {
     parkingPlace += 1
-    println(tag+"parkingPlace+1,now="+parkingPlace)
+//    println(tag+"parkingPlace+1,now="+parkingPlace)
     if (actor != id) {
       markerInfos.foreach(p => {
         if (p._2.waitingMarker.contains(actor) && p._2.waitingMarker(actor))
@@ -450,7 +477,7 @@ class ParkingNodeImpl(val id: Int, var parkingPlace: Int, address: Address) exte
   }
 
   def init() = {
-    this.synchronized{
+    parkingLock.synchronized{
 	    registerAsServer
 	    getMonitor
 	    getOtherNodes

@@ -1,5 +1,6 @@
 import scala.util.control.Breaks._
 import parking.monitor.MonitorImpl
+import parking.node.VectorClock
 object tester extends App {
 val monitor=new MonitorImpl
 monitor.start
@@ -18,8 +19,8 @@ monitor.start
 //  var clock12=new VectorClock(2)
 //  var clock13=new VectorClock(3)
 //  var clock14=new VectorClock(4)
-//  clock1.internalClock=Map(5 -> 0, 1 -> 4, 2 -> 2, 3 -> 1, 4 -> 2)
-//  clock2.internalClock=Map(5 -> 0, 1 -> 4, 2 -> 3, 3 -> 1, 4 -> 2)
+//  clock1.internalClock=Map(5 -> 0, 1 -> 1, 2 -> 2, 3 -> 1, 4 -> 2)
+//  clock2.internalClock=Map(5 -> 0, 1 -> 4, 2 -> 1, 3 -> 1, 4 -> 2)
 //  clock3.internalClock=Map(5 -> 4, 1 -> 2, 2 -> 1, 3 -> 0, 4 -> 0)
 //  clock4.internalClock=Map(5 -> 5, 1 -> 2, 2 -> 1, 3 -> 0, 4 -> 0)
 //	clock5.internalClock=Map(5 -> 5, 1 -> 3, 2 -> 1, 3 -> 0, 4 -> 0)

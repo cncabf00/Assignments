@@ -18,7 +18,7 @@ class MonitorImpl extends Monitor{
   val monitorHost="localhost"
   val monitorPort=10000
   val monitorName="monitor"
-  var parkingPlace=3
+  var parkingPlace=30
   var nodes=List[ParkingListener]()
   @serializable var nodeAddress=List[Address]()
   var carID=0
@@ -124,16 +124,16 @@ class MonitorImpl extends Monitor{
               nodes.synchronized {
               arrangeCar
               }
-              Thread.sleep(rand.nextInt(50)+70)
+              Thread.sleep(rand.nextInt(10)+15)
             }
         }
       }
       (new Arranger).start
       class Pusher extends Actor {
          def act() {
-           for (i<-1 to 299)
+           for (i<-1 to 290)
            {
-             Thread.sleep(rand.nextInt(50)+75)
+             Thread.sleep(rand.nextInt(10)+30)
             nodes.synchronized {
               carLeave
             }
